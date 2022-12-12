@@ -12,12 +12,12 @@ export default function Newnav() {
                 <p>Fashion</p>
                 <p>Customer Services</p>
                 <p>Electronics</p>
-                <p>Prime</p>
+                <p>Grocery</p>
                 <p>Today's deal</p>
-                <p>Amazon Pay</p>
+                <p>Appliances</p>
             </div>
             <div className='right_data'>
-                <img src='./nav.jpg' alt='navata' />
+                <img src='./nav.png' alt='navata' height='39px' />
             </div>
         </div>
     </div>
