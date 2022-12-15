@@ -2,9 +2,9 @@ import React from "react";
 import "./navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Avatar from '@mui/material/Avatar';
-import { NavLink } from 'react-router-dom';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Avatar from "@mui/material/Avatar";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -12,7 +12,7 @@ export default function Navbar() {
       <nav>
         <div className="left">
           <div className="navlogo">
-            <NavLink to='/'><img src="./RedStore.png" alt="" /></NavLink>
+            <NavLink to="/"><img src="./RedStore.png" alt="" /></NavLink>
           </div>
           <div className="nav_searchbaar">
             <input type="text" name="" id="" />
@@ -26,10 +26,11 @@ export default function Navbar() {
             <NavLink to="/login">signin</NavLink>
           </div>
           <div className="cart_btn">
-            <Badge color="success">
+            <NavLink to="/Cart">
+              <Badge color="success">
                 <ShoppingCartIcon id="icon" />
-            </Badge>
-            <p>Cart</p>
+              </Badge>
+            </NavLink>
           </div>
           <Avatar className="avatar" />
         </div>
