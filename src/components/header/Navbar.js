@@ -26,11 +26,10 @@ export default function Navbar() {
             <NavLink to="/login">signin</NavLink>
           </div>
           <div className="cart_btn">
-            <NavLink to="/Cart">
               <Badge color="success">
                 <ShoppingCartIcon id="icon" />
               </Badge>
-            </NavLink>
+              <p>Cart</p>
           </div>
           <Avatar className="avatar" />
         </div>

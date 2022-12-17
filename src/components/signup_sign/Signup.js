@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
 
     const [udata,setUdata] = useState({
-        name:"",
+        fname:"",
         email:"",
-        number:"",
+        mobile:"",
         password:"",
         cpassword:""
     })
@@ -22,6 +24,40 @@ const Signup = () => {
                 [name]:value
             }
         })
+    };
+
+
+
+    const senddata = async(e)=>{
+        e.preventDefault();
+        const {fname,email,mobile,password,cpassword} = udata;
+
+        const res = await fetch("register",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                fname,email,mobile,password,cpassword
+            })
+        });
+
+        const data = await res.json();
+        // console.log(data);
+
+
+        if (res.status === 422 || !data) {
+            // alert("no data")
+            toast.warn("Invalid Data",{
+                position:"top-center"
+            })
+        }else{
+            // alert("data successfully added");
+            toast.success("data successfully added",{
+                position: "top-center",
+            })
+            setUdata({...udata,fname:"",email:"",mobile:"",password:"",cpassword:""});
+        }
     }
     
     return (
@@ -31,14 +67,14 @@ const Signup = () => {
                 <img src='./RS.png' alt='RedStoreLogo' />
             </div>
             <div className='sign_form'>
-                <form>
+                <form method='POST'>
                     <h1>Signup</h1>
                     <div className='form_data'>
                         <label htmlFor='name'>Your Name</label>
                         <input type='text' 
                         onChange={adddata}
-                        value={udata.name}
-                        name='name' id='name' />
+                        value={udata.fname}
+                        name='fname' id='name' />
                     </div>
                     <div className='form_data'>
                         <label htmlFor='email'>Email</label>
@@ -48,18 +84,18 @@ const Signup = () => {
                         name='email' id='email' />
                     </div>
                     <div className='form_data'>
-                        <label htmlFor='number'>Phone Number</label>
+                        <label htmlFor='number'>Mobile number</label>
                         <input type='number' 
                         onChange={adddata}
                         value={udata.number}
-                        name='number' id='number' />
+                        name='mobile' id='mobile' />
                     </div>
                     <div className='form_data'>
                         <label htmlFor='password'>Password</label>
                         <input type='password'  
                         onChange={adddata}
                         value={udata.password}
-                        name='password' placeholder='At least 8 Characters' id='password' />
+                        name='password' placeholder='At least 6 Characters' id='password' />
                     </div>
                     <div className='form_data'>
                         <label htmlFor='cpassword'>Conform Password</label>
@@ -68,13 +104,14 @@ const Signup = () => {
                         value={udata.cpassword}
                         name='cpassword' id='cpassword' />
                     </div>
-                    <button className='signin_btn'>Continue</button>
+                    <button className='signin_btn' onClick={senddata}>Continue</button>
                     <div className='signin_info'>
                         <p>Already have an Account</p>
                         <NavLink to='/login'>Signin</NavLink>
                     </div>
                 </form>
             </div>
+           <ToastContainer /> 
         </div>
     </section>
     )
