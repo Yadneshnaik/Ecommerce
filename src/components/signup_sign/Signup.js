@@ -95,7 +95,7 @@ const Signup = () => {
                         <input type='password'  
                         onChange={adddata}
                         value={udata.password}
-                        name='password' placeholder='At least 6 Characters' id='password' />
+                        name='password' placeholder='At least 8 Characters' id='password' />
                     </div>
                     <div className='form_data'>
                         <label htmlFor='cpassword'>Conform Password</label>
